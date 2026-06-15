@@ -37,9 +37,19 @@ def get_arch(opt):
     arch = opt.arch
     print('You choose '+arch+'...')
     if arch.lower() == 'idt':
-        model = IDT(in_chans=opt.in_chans, embed_dim=opt.embed_dim, depths=opt.depths,
-                                num_heads=opt.num_heads, win_size=opt.win_size, mlp_ratio=opt.mlp_ratio,
-                                qkv_bias=opt.qkv_bias)
+        #model = IDT(in_chans=opt.in_chans, embed_dim=opt.embed_dim, depths=opt.depths,
+        #                        num_heads=opt.num_heads, win_size=opt.win_size, mlp_ratio=opt.mlp_ratio,
+        #                        qkv_bias=opt.qkv_bias)
+        model = IDT(
+                img_size=opt.crop_size,
+                in_chans=opt.in_chans,
+                embed_dim=opt.embed_dim,
+                depths=opt.depths,
+                num_heads=opt.num_heads,
+                win_size=opt.win_size,
+                mlp_ratio=opt.mlp_ratio,
+                qkv_bias=opt.qkv_bias
+            )
     else:
         raise Exception("Arch error!")
 

@@ -85,13 +85,17 @@ def prepare_SPA(datapath):
 
 def prepare_raindrop(datapath):
     print("process Raindrop!")
-    inputpath = os.path.join(datapath, 'input')
-    gtpath = os.path.join(datapath, 'groundtruth')
+    #inputpath = os.path.join(datapath, 'input')
+    #gtpath = os.path.join(datapath, 'groundtruth')
+    inputpath = os.path.join(datapath, 'train', 'data')
+    gtpath = os.path.join(datapath, 'train', 'gt')
     clean_filenames = []
     noisy_filenames = []
     for i in range(861):
-        target_file = "%d_clean.png" % (i)
-        input_file = "%d_rain.png" % (i)
+        #target_file = "%d_clean.png" % (i)
+        #input_file = "%d_rain.png" % (i)
+        target_file = "%d.png" % (i)
+        input_file = "%d.png" % (i)
         noisy_filenames.append(os.path.join(inputpath, input_file))
         clean_filenames.append(os.path.join(gtpath, target_file))
     return noisy_filenames, clean_filenames
@@ -131,7 +135,9 @@ class DataLoaderTrain(data.Dataset):
             imgs, gts = prepare_DID(opt.data_path)
         elif opt.data_path.find('sparain') != -1:
             imgs, gts = prepare_SPA(opt.data_path)
-        elif opt.data_path.find('raindrop') != -1:
+        #elif opt.data_path.find('raindrop') != -1:
+        #    imgs, gts = prepare_raindrop(opt.data_path)
+        elif opt.data_path.find('RainDrop') != -1:
             imgs, gts = prepare_raindrop(opt.data_path)
         elif opt.data_path.find('RainDS_syn') != -1:
             imgs, gts = prepare_RainDS_syn(opt.data_path)
